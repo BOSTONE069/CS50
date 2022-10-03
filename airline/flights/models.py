@@ -17,3 +17,12 @@ class Flight(models.Model):
 
     def __str__(self):
         return f"{self.id}: {self.origin} to {self.destination}"
+
+
+class Passenger(models.Model):
+    FirstName = models.CharField(max_length=100)
+    SecondName = models.CharField(max_length=100)
+    flights = models.ManyToManyField(Flight, blank=True, related_name="passengers")
+
+    def __str__(self):
+        return f"{self.FirstName} {self.SecondName}"
