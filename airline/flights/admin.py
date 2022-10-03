@@ -1,7 +1,18 @@
 from django.contrib import admin
 
 from .models import Flight, Airport, Passenger
+
+
 # Register your models here.
+# When I visit the admin page for flights, I want to see the origin, destination, and duration columns.
+class FlightAdmin(admin.ModelAdmin):
+    list_display = ("origin", "destination", "duration")
+
+
+class PassengerAdmin(admin.ModelAdmin):
+    filter_horizontal = ("flights",)
+
+
 admin.site.register(Airport)
-admin.site.register(Flight)
-admin.site.register(Passenger)
+admin.site.register(Flight, FlightAdmin)
+admin.site.register(Passenger, PassengerAdmin)
