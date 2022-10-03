@@ -13,6 +13,10 @@ class PassengerAdmin(admin.ModelAdmin):
     filter_horizontal = ("flights",)
 
 
-admin.site.register(Airport)
+class AirportAdmin(admin.ModelAdmin):
+    list_display = ("code", "city")
+
+
+admin.site.register(Airport, AirportAdmin)
 admin.site.register(Flight, FlightAdmin)
 admin.site.register(Passenger, PassengerAdmin)
