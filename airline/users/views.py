@@ -21,11 +21,14 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "users/login.html"), {
+            return render(request, "users/login.html", {
                 "message": "Invalid username or password"
-            }
+            })
     return render(request, "users/login.html")
 
 
 def logout_view(request):
-    return render(request, "users/logout.html")
+    logout(request)
+    return render(request, "users/login.html", {
+        "message": "You have been logged out"
+    })
