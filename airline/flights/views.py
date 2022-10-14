@@ -39,6 +39,15 @@ def flight(request, flight_id):
 
 
 def book(request, flight_id):
+    """
+    If the request is a POST request, get the flight and passenger, add the passenger to the flight, and redirect to the
+    flight page
+
+    :param request: The request object is the first parameter to every view. It contains information about the request that
+    was made to the server
+    :param flight_id: The primary key of the flight that we want to book a passenger on
+    :return: The reverse function is returning the URL for the flight page.
+    """
     if request.method == "POST":
         flight = Flight.objects.get(pk=flight_id)
         passenger = Passenger.objects.get(pk=int(request.POST["passenger"]))
